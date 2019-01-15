@@ -79,7 +79,7 @@ export default class Main extends Component {
                     addList={this.addList}
                     removeList={this.removeList}
                 />
-                {Object.keys(myLists).length > 1
+                {Object.keys(myLists).length > 0
                     ? <TaskSection
                         title={this.state.selectedList}
                         display={display}
