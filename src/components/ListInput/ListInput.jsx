@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class Input extends Component {
+export default class ListInput extends Component {
     submit = (e) => {
         e.preventDefault();
-        this.props.onSubmit(e.target.addtask.value);
-        e.target.addtask.value = '';
+        this.props.onSubmit(e.target.addlist.value);
+        e.target.addlist.value = '';
     }
 
     render() {
         return (
             <form onSubmit={this.submit} >
-                <input type="text" name="addtask" placeholder="Add your task here" />
+                <input type="text" name="addlist" placeholder="Add or search lists" />
                 <input type="submit" value="add" />
             </form>
         );
     }
 }
 
-Input.propTypes = {
+ListInput.propTypes = {
     onSubmit: PropTypes.func,
 };
