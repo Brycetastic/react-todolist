@@ -1,15 +1,24 @@
 import React, { Component, Fragment } from 'react';
-import { getTasks, setTasks } from '../../api';
+import { getTasks, setTasks, removeTask } from '../../api';
 import { Title, Input, Task } from '../../components';
 
 export default class Main extends Component {
     state = {
-        myTasks: getTasks(),
+        taskList: getTasks(),
     }
 
-    updatedTasks = (name, completed = false) => {
-        this.setState(({myTasks}) => ({
-            myTasks: setTasks(myTasks, name, completed)()
+    update = (name, completed = false) => {
+        this.setState(({taskList}) => {
+            const setTaskList = setTasks(taskList, name, completed);
+            return ({
+                myTasks: setTaskList(),
+            })
+        })
+    }
+
+    remove = (name) => {
+        this.setState(({taskList}) => ({
+            taskList: removeTask(taskList, name),
         }))
     }
 
@@ -17,9 +26,14 @@ export default class Main extends Component {
         return (
             <Fragment>
                 <Title title="Hello" />
-                <Input onSubmit={ this.updatedTasks } />
-                {this.state.myTasks.map((item) => (
-                    <Task key={item.name} updatedTask={this.updatedTasks} { ...item } />
+                <Input onSubmit={ this.update } />
+                {this.state.taskList.map((item) => (
+                    <Task
+                        key={item.name}
+                        updateTask={this.update}
+                        removeTask={this.remove}
+                        { ...item }
+                    />
                 ))}
             </Fragment>
         )

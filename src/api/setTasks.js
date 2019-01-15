@@ -1,16 +1,15 @@
-export default function setTasks(prevTasks, name, completed) {
+export default function setTasks(taskList, name, completed) {
     return () => {
-        for (let i = 0; i < prevTasks.length; i++) {
-            if (prevTasks[i].name === name) {
-                prevTasks[i].completed = completed;
-                window.localStorage.setItem('todoTasks', JSON.stringify(prevTasks));
-                return prevTasks;
+        for (let i = 0; i < taskList.length; i++) {
+            if (taskList[i].name === name) {
+                taskList[i].completed = completed;
+                window.localStorage.setItem('todoTasks', JSON.stringify(taskList));
+                return taskList;
             }
         }
 
-        prevTasks.push({ name, completed });
-        window.localStorage.setItem('todoTasks', JSON.stringify(prevTasks));
-        return prevTasks;
+        taskList.push({ name, completed });
+        window.localStorage.setItem('todoTasks', JSON.stringify(taskList));
+        return taskList;
     }
 }
-            
