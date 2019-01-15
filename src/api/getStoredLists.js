@@ -27,6 +27,6 @@ export default function getStoredLists() {
 
     return storedTodos
         ? { ...storedTodos }
-        : { };
+        : {myLists: {}}
 }
             
