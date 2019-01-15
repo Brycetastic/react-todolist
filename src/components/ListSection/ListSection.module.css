@@ -1,0 +1,12 @@
+.listWrapper {
+    display: flex;
+    width: 25%;
+    flex-flow: column;
+    background: #004365;
+    height: 100vh;
+}
+
+.listWrapper h3 {
+    margin-left: 5%;
+    color: white;
+}

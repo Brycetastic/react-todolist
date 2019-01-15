@@ -8,14 +8,19 @@ class TaskHandler extends Component {
     toggle = () => {
         this.setState(
             ({ on }) => ({on: !on}),
-            () => this.props.onToggle(this.state.on),
+            () => this.props.updateTask(this.props.name, this.state.on),
         )
+    }
+    
+    remove = () => {
+        this.props.removeTask(this.props.name);
     }
     
     getStateAndHelpers() {
         return {
             on: this.state.on,
-            toggle: this.toggle,
+            onToggle: this.toggle,
+            onRemove: this.remove
         }
     }
     render() {
@@ -24,24 +29,18 @@ class TaskHandler extends Component {
 }
 
 // render prop
-function Task({ name, updatedTask, ...props }) {
-    const onToggle = (on) => {
-        // setTask
-        updatedTask(name, on);
-        console.log('onToggle', on)
-    }
-
+function Task (props) {
     return (
-        <TaskHandler onToggle={ onToggle } { ...props } >
-            {({ on, toggle }) => (
+        <TaskHandler { ...props } >
+            {({ on, onToggle, onRemove }) => (
                 <div className={styles.taskWrapper}>
                     <div>
-                        <Switch on={on} onClick={toggle} />
-                        <p>{name}</p>
+                        <Switch on={on} onClick={onToggle} />
+                        <p>{props.name}</p>
                     </div>
                     <div>
-                        <button aria-label="custom-button" onClick={toggle}>
-                            {on ? 'on' : 'off'}
+                        <button aria-label="custom-button" onClick={onRemove}>
+                            remove
                         </button>
                     </div>
                 </div>
@@ -51,13 +50,16 @@ function Task({ name, updatedTask, ...props }) {
 }
 
 TaskHandler.propTypes = {
-    onToggle: PropTypes.func,
+    name: PropTypes.string,
     completed: PropTypes.bool,
+    updateTask: PropTypes.func,
+    removeTask: PropTypes.func,
 };
 
 Task.propTypes = {
     name: PropTypes.string,
-    updatedTask: PropTypes.func,
+    updateTask: PropTypes.func,
+    removeTask: PropTypes.func,
 };
 
 export {TaskHandler, Task as default}
