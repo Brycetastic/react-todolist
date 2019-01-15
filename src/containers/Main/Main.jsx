@@ -68,7 +68,7 @@ export default class Main extends Component {
 
     render() {
         const { myLists, selectedList } = this.state;
-        const display = myLists[selectedList];
+        const display = myLists && myLists[selectedList];
 
         return (
             <div className={styles.mainWrapper}>
@@ -79,12 +79,15 @@ export default class Main extends Component {
                     addList={this.addList}
                     removeList={this.removeList}
                 />
-                <TaskSection
-                    title={this.state.selectedList}
-                    display={display}
-                    updateTask={this.updateTask}
-                    removeTask={this.removeTask}
-                />
+                {Object.keys(myLists).length > 1
+                    ? <TaskSection
+                        title={this.state.selectedList}
+                        display={display}
+                        updateTask={this.updateTask}
+                        removeTask={this.removeTask}
+                    />
+                    : null
+                }
             </div>
         )
     }
