@@ -5,3 +5,4 @@ export { default as Task } from './Task';
 export { default as TaskInput } from './TaskInput';
 export { default as TaskSection } from './TaskSection';
 export { default as Switch } from './Switch';
+export { default as Welcome } from './Welcome';

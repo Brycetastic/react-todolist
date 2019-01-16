@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styles from './TaskInput.module.css';
 
 export default class TaskInput extends Component {
     submit = (e) => {
@@ -10,9 +11,9 @@ export default class TaskInput extends Component {
 
     render() {
         return (
-            <form onSubmit={this.submit} >
+            <form onSubmit={this.submit} className={styles.formWrapper}>
                 <input type="text" name="addtask" placeholder="Add your task here" />
-                <input type="submit" value="add" />
+                <input type="submit" value="+" />
             </form>
         );
     }

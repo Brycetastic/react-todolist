@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import styles from './Task.module.css';
 import Switch from '../Switch';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class TaskHandler extends Component {
     state = { on: this.props.completed }
@@ -33,15 +35,20 @@ function Task (props) {
     return (
         <TaskHandler { ...props } >
             {({ on, onToggle, onRemove }) => (
-                <div className={styles.taskWrapper}>
+                <div className={classnames(styles.taskWrapper, {
+                    [styles.taskSelected]: on,
+                })}>
                     <div>
                         <Switch on={on} onClick={onToggle} />
                         <p>{props.name}</p>
                     </div>
-                    <div>
-                        <button aria-label="custom-button" onClick={onRemove}>
-                            remove
-                        </button>
+                    <div className={styles.taskStatus} >
+                        {on
+                            ? <FontAwesomeIcon icon="check" />
+                            : (<button aria-label="custom-button" onClick={onRemove}>
+                                <FontAwesomeIcon icon="minus" />
+                            </button>)
+                        }
                     </div>
                 </div>
             )}

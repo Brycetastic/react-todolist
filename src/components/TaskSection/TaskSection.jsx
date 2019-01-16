@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import { TaskInput, Task } from '../';
-// import classnames from 'classnames';
 import styles from './TaskSection.module.css';
 
 export default function TaskSection (props) {
