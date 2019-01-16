@@ -1,4 +1,4 @@
-.taskWrapper {
+.wrapper {
     display: flex;
     flex: 1;
     flex-flow: column;
@@ -6,7 +6,11 @@
     padding: 20px 30px;
 }
 
-.taskWrapper h1 {
+.wrapper h1 {
     color: rgba(0, 0, 0, 0.7);
-    text-transform: capitalize;
+    text-align: center;
+}
+
+.wrapper p {
+    text-align: center;
 }

@@ -2,21 +2,33 @@
     display: flex;
     align-items: center;
     padding: 5px 10px;
-    width: 80%;
-    margin: 0 auto 10px;
+    margin: 0 0 10px;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 5px;
 }
 
 .formWrapper input {
+    display: flex;
     color: rgba(255, 255, 255, 0.8);
     background: none;
     border: 0;
+    font-size: 14px;
+}
+
+.formWrapper input:first-child {
+    flex: 1;
+    color: white;
+}
+
+.formWrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .formWrapper input:last-child {
     cursor: pointer;
+    font-size: 20px;
 }
+
 .formWrapper input:last-child:hover {
     color: white;
 }
