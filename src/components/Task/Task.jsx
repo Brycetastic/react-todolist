@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class TaskHandler extends Component {
     state = { on: this.props.completed }
+    
     toggle = () => {
         this.setState(
             ({ on }) => ({on: !on}),

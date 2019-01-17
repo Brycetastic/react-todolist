@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import { ListInput, List } from '../';
-// import classnames from 'classnames';
 import styles from './ListSection.module.css';
 
 export default function ListSection (props) {
