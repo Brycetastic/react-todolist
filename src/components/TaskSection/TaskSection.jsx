@@ -20,9 +20,7 @@ export default function TaskSection (props) {
             <p>
                 {props.display.percentComplete === 1
                     ? 'Congratulations you finished!'
-                    : props.display.percentComplete === 0
-                        ? 'Before you eat the elephant, make sure you know what parts you want to eat.'
-                        : 'It feels great to cross things off your todo list'
+                    : 'Before you eat the elephant, make sure you know what parts you want to eat.'
                 }
             </p>
         </section>

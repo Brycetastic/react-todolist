@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { setStoredLists, getStoredLists } from '../../api';
-import { updateTask, removeTask } from './helpers';
+import { updateTask, removeTask, addList } from './helpers';
 import { TaskSection, ListSection, Welcome } from '../../components';
 import styles from './Main.module.css';
 
@@ -10,15 +10,12 @@ export default class Main extends Component {
     updateTask = (name, completed = false) => {
         if (name) {
             name = name.toLowerCase();
-            this.setState(({myLists, selectedList}) => {
-                const updatedList = updateTask(myLists[selectedList].list, name, completed);
-                return ({
-                    myLists: {
-                        ...myLists,
-                        [selectedList]: updatedList(),
-                    }
-                })
-            }, () => setStoredLists(this.state))    
+            this.setState(({myLists, selectedList}) => ({
+                myLists: {
+                    ...myLists,
+                    [selectedList]: updateTask(myLists[selectedList].list, name, completed),
+                }
+            }), () => setStoredLists(this.state))    
         }
     }
 
@@ -41,22 +38,10 @@ export default class Main extends Component {
     addList = (name) => {
         if (name) {
             name = name.toLowerCase();
-            this.setState(({myLists}) => {
-                const newLists = {...myLists};
-                const isKeyFound = Object.keys(newLists).find((item) => item === name);
-                newLists[name] = {
-                    list: [],
-                    percentComplete: 0,
-                }
-    
-                return ({
-                    myLists: isKeyFound
-                        ? {...myLists}
-                        : {...newLists}
-                    ,
-                    selectedList: name,
-                })
-            }, () => setStoredLists(this.state))    
+            this.setState(({myLists}) =>
+                ({...addList(myLists, name)}), 
+                () => setStoredLists(this.state)
+            )
         }
     }
 

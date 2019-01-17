@@ -1,21 +1,35 @@
 .formWrapper {
     display: flex;
     align-items: center;
-    padding: 5px 10px;
-    width: 80%;
+    padding: 5px 3px 5px 10px;
+    width: calc(90% - 20px);
     margin: 0 auto 10px;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 5px;
 }
 
 .formWrapper input {
-    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    color: white;
     background: none;
     border: 0;
+    font-size: 14px;
+}
+
+.formWrapper input:first-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.formWrapper input:first-child::placeholder {
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .formWrapper input:last-child {
     cursor: pointer;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
 }
 .formWrapper input:last-child:hover {
     color: white;
